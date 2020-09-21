@@ -1,0 +1,141 @@
+<div style="float: right; background-color: white;margin-top: 20px;">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" (click)="setA()" class="btn btn-outline-success">Associates</button>
+        <button type="button" (click)="setM()" class="btn btn-outline-success">Mentors</button>
+        <button type="button" (click)="setT()" class="btn btn-outline-success">Tasks</button>
+      </div>
+</div>
+
+<div [hidden]="isA">
+    <div style="opacity: 90%; margin-top: 100px; margin-left: 150px; margin-right: 150px; "> 
+        <div class="container">
+        <div class="card border-s">
+          <div class="card-header">
+          Here are the Associates!
+          </div>
+          <div class="card-body">
+            
+            <!-- ........ -->
+            <div *ngFor="let associate of associates; let idx=index;">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Associate Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Photograph</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr class="table-info">
+                        <td>{{associate.ass_id}}</td>
+                        <td>{{associate.aname}}</td>
+                        <td>
+                            <img [src]="associate.image" class="pimage" alt="Photograph">
+                        </td>
+                       </tr> 
+                        <!-- <td>{{task.task_status || 0}}%</td> -->
+                    </tbody>
+                  </table> 
+            </div>
+            <!-- ........ -->
+      
+            
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div [hidden]="isM">
+    <div style="opacity: 90%; margin-top: 100px; margin-left: 150px; margin-right: 150px; "> 
+        <div class="container">
+        <div class="card border-s">
+          <div class="card-header">
+          Here are the Mentors!
+          </div>
+          <div class="card-body">
+            
+            <!-- ........ -->
+            <div *ngFor="let mentor of mentors; let idx=index;">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mentor Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Photograph</th>
+                        <th scope="col">Organization</th>
+                        <th scope="col">Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr class="table-success">
+                        <td>{{mentor.mentor_id}}</td>
+                        <td>{{mentor.mname}}</td>
+                        <td>
+                            <img [src]="mentor.photograph" class="pimage" alt="Photograph">
+                        </td>
+                        <td>{{mentor.organization}}</td>
+                        <td>{{mentor.role}}</td>
+                       </tr> 
+                        <!-- <td>{{task.task_status || 0}}%</td> -->
+                    </tbody>
+                  </table> 
+            </div>
+            <!-- ........ -->
+      
+            
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div [hidden]="isT" style="margin-top:100px;">
+
+    <div class="container">
+        <div class="card border-s">
+          <div class="card-header">
+            Here are the tasks!
+          </div>
+          <div class="card-body">
+            
+            <!-- <h5 class="card-title">Enter Your credentials to login:</h5> -->
+            
+            <!-- ........ -->
+            <div *ngFor="let task of tasks; let idx=index;">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Associate Id</th>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Assigned Date</th>
+                        <th scope="col">Completion Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr class="table-success">
+                        <th scope="row">{{task.task_type}}</th>
+                        <td>{{task.associateid}}</td>
+                        <td>{{task.tname}}</td>
+                        <td>{{task.tdate}}</td>
+                        <!-- <td>{{task.task_status || 0}}%</td> -->
+                        <td>
+                          <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" 
+                          [style.width]="task.task_status+'%'"
+                           [aria-valuenow]="task.task_status" aria-valuemin="0" aria-valuemax="100">{{task.task_status || 0}}%</div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table> 
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>

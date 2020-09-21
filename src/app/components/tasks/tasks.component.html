@@ -1,0 +1,97 @@
+
+<div class="container">
+    <div class="card border-s">
+      <div class="card-header">
+        Here are the tasks!
+      </div>
+      <div class="card-body">
+        
+        <!-- <h5 class="card-title">Enter Your credentials to login:</h5> -->
+        
+        <!-- ........ -->
+        <div *ngFor="let task of tasks; let idx=index;">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Assigned Date</th>
+                    <th scope="col">Completion Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr class="table-success">
+                    <th scope="row">{{task.task_type}}</th>
+                    <td>{{task.tid}}</td>
+                    <td>{{task.tname}}</td>
+                    <td>{{task.tdate}}</td>
+                    <!-- <td>{{task.task_status || 0}}%</td> -->
+                    <td>
+                      <div class="progress">
+                      <div class="progress-bar bg-warning" role="progressbar" 
+                      [style.width]="task.task_status+'%'"
+                       [aria-valuenow]="task.task_status" aria-valuemin="0" aria-valuemax="100">{{task.task_status || 0}}%</div>
+                      </div>
+                    </td>
+                    
+                    <!-- <td></td> -->
+                    <td>
+                      <button id="b-{{idx}}" type="button" (click)="update_status(idx,task.tid)" class="btn btn-success">Update </button>
+                    </td>
+                  </tr>
+                  <input [(ngModel)]="tasks[idx].task_status" id="status_update-{{idx}}" name="status_update" size="5" type="text">
+                </tbody>
+              </table> 
+        </div>
+    
+        <!-- <div [hidden]="!submitted">
+           Wait, your credentials are being verified!
+           <br>
+           <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+        </div> -->
+        <!-- ........ -->    
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="card border-s">
+    <div class="card-header">
+      Here are the resources!
+    </div>
+    <div class="card-body">
+      
+      <!-- <h5 class="card-title">Enter Your credentials to login:</h5> -->
+      
+      <!-- ........ -->
+      <div *ngFor="let resource of resources; let idx=index;">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Resource Name</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr class="table-warning">
+                  <td>{{resource.rname}}</td>
+                  <td>{{resource.tid}}</td>
+                  <td><a href="{{resource.link}}">{{resource.link}}</a></td>
+                </tr>
+              </tbody>
+            </table> 
+      </div>
+  
+      <!-- <div [hidden]="!submitted">
+         Wait, your credentials are being verified!
+         <br>
+         <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+      </div> -->
+      <!-- ........ -->    
+    </div>
+  </div>
+</div>

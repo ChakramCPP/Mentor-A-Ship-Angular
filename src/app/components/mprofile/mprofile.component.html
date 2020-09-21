@@ -1,0 +1,140 @@
+<div [hidden]="isEditing" class="container" style="margin-right: 400px; margin-left: 400px; width: auto; margin-top: 60px;opacity: 90%;">
+    <div class="card border-s">
+      <div class="card-header">
+        Click on Edit to edit your profile!
+        <span><button 
+           type="button"
+           class="btn btn-success" 
+           style="float: right;"
+           (click)="editProfile()"
+           >Edit</button></span>
+      </div>
+      <div class="card-body" style="float: right; width: auto; background-color: white;">
+
+        <div style="width: 200px; height: 200px; margin-top: 30px; margin-left: 150px;;">
+            <img class="pimage" [src]="mentor.photograph" width="200px;" height="200px;" alt="Image">
+           </div>
+
+       <div style="width: 350px;  padding-top: 30px; margin-left: 80px; text-align: center;">
+        <h3>{{mentor.mname}}</h3>
+        <p class="title"><i class="fa fa-dribbble">{{mentor.email}}</i></p>
+        <!-- <p class="title"><i class="fa fa-dribbble">{{mentor.role}}</i></p> -->
+        <h3>{{mentor.role}} At <i><b>{{mentor.organization}}</b></i></h3>
+        <!-- <p class="title"> <b><i class="fa fa-dribbble">{{mentor.organization}}</i></b></p> -->
+        <p class="title"><i class="fa fa-dribbble">Area of Interest : {{mentor.aoi}}</i></p>
+        <p class="title"><i class="fa fa-dribbble">Expertise : {{mentor.expertise}}</i></p>
+        <!-- <p class="title"><i class="fa fa-dribbble">{{mentor.pwd}}</i></p> -->
+        <a href="#"></a>
+       </div>
+
+     
+
+      </div>
+    </div>
+</div>
+<div [hidden]="!isEditing" style="opacity: 90%; margin-top: 100px; margin-left: 400px; margin-right: 400px; "> 
+  <div class="container">
+  <div class="card border-s">
+    <div class="card-header">
+      Welcome to the Mentor-A-Ship!
+    </div>
+    <div class="card-body">
+      
+      <!-- ........ -->
+      <form (ngSubmit)="onSubmit()" #regForm="ngForm"> 
+        <div>
+            <p class="lead">Edit your details to update Profile!</p>
+            
+            <!-- Name Field -->
+            <div class="form-group">
+            
+              <label class="col-form-label bcolor" for="uname"> Name* </label>
+              <input [(ngModel)]="mentor.mname" required name="uname" #Name="ngModel" type="text" 
+                class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Name" id="uname">
+          
+            </div>
+            <!-- Email Field -->
+            <div class="form-group">
+            
+            <label class="col-form-label" for="myemail"> Email* </label>
+            <input [(ngModel)]="mentor.email" required name="myemail" #emailid="ngModel" type="email" 
+              class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Email Id" id="myemail">
+        
+            </div>
+            <!-- <br> -->
+              <!-- Organization Field -->
+              <div class="form-group">
+              
+                <label class="col-form-label" for="org"> Organization </label>
+                <input [(ngModel)]="mentor.organization" required name="org" #Org="ngModel" type="text" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Organization" id="org">
+            
+              </div>
+              <!-- Role Field -->
+              <div class="form-group">
+              
+                <label class="col-form-label" for="role"> Role </label>
+                <input [(ngModel)]="mentor.role" required name="role" #Role="ngModel" type="text" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Role" id="role">
+            
+              </div>
+  
+              <!-- Area of Interest Field -->
+              
+              <div class="form-group">
+              
+                <label class="col-form-label" for="aoi"> Area of Interest </label>
+                <input [(ngModel)]="mentor.aoi" required name="aoi" #Aoi="ngModel" type="text" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Area of Interest" id="aoi">
+            
+              </div>
+            
+              <!-- Expertise Field -->
+              <div class="form-group">
+              
+                <label class="col-form-label" for="expertise"> Expertise </label>
+                <input [(ngModel)]="mentor.expertise" required name="expertise" #Role="ngModel" type="text" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Expertise" id="expertise">
+            
+              </div>
+            <!-- password field -->
+            <div class="form-group">
+            
+            <label for="password">Password*</label>
+            <input [(ngModel)]="mentor.pwd" required name="password" type="password" #pwd="ngModel"
+              class="form-control ng-valid bcolor" placeholder="Password" id="password">
+        
+            </div>
+
+            <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+            <br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+
+              File uploaded: <img width="300px;" [src]="downloadSrc" alt="">
+              <!-- <a [href]="downloadSrc">{{downloadSrc}}</a> -->
+            </div>
+
+            <!-- submit button -->
+            <button type="submit" class="btn btn-success"
+            [disabled]="!regForm.form.valid">
+            Update
+            </button>
+
+        </div>
+    
+      </form>
+      <!-- ........ -->
+
+      
+    </div>
+  </div>
+  </div>
+
+  
+  <!-- ...... -->     
+
+</div>

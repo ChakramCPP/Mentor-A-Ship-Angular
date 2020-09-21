@@ -1,0 +1,110 @@
+<!-- <div class="card">
+    <img src="https://pbs.twimg.com/profile_images/988775660163252226/XpgonN0X_400x400.jpg" alt="John" style="width:1">
+    <h1>John Doe</h1>
+    <p class="title">CEO & Founder, Example</p>
+    <p>Harvard University</p>
+    <a href="#"><i class="fa fa-dribbble"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <p><button>Contact</button></p>
+  </div> -->
+<div [hidden]="isEditing" class="container" style="margin-right: 400px; margin-left: 400px; width: auto; margin-top: 60px;opacity: 90%;">
+    <div class="card border-s">
+      <div class="card-header">
+        Click on Edit to edit your profile!
+        <span><button 
+           type="button"
+           class="btn btn-success" 
+           style="float: right;"
+           (click)="editProfile()"
+           >Edit</button></span>
+      </div>
+      <div class="card-body" style="float: right; width: auto; background-color: white;">
+
+        <div style="width: 200px; height: 200px; margin-top: 30px; margin-left: 150px;;">
+            <img class="pimage" [src]="associate.image" width="200px;" height="200px;" alt="Image">
+           </div>
+
+       <div style="width: 350px;  padding-top: 30px; margin-left: 80px; text-align: center;">
+        <h3>{{associate.aname}}</h3>
+        <p class="title"><i class="fa fa-dribbble">{{associate.email}}</i></p>
+        <a href="#"></a>
+       </div>
+
+     
+
+      </div>
+    </div>
+</div>
+<div [hidden]="!isEditing" style="opacity: 90%; margin-top: 100px; margin-left: 400px; margin-right: 400px; "> 
+  <div class="container">
+  <div class="card border-s">
+    <div class="card-header">
+      Welcome to the Mentor-A-Ship!
+    </div>
+    <div class="card-body">
+      
+      <!-- ........ -->
+      <form (ngSubmit)="onSubmit()" #regForm="ngForm"> 
+        <div>
+            <p class="lead">Edit your details to update Profile!</p>
+            
+            <!-- Name Field -->
+            <div class="form-group">
+            
+              <label class="col-form-label bcolor" for="uname"> Name* </label>
+              <input [(ngModel)]="associate.aname" required name="uname" #Name="ngModel" type="text" 
+                class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Name" id="uname">
+          
+            </div>
+            <!-- Email Field -->
+            <div class="form-group">
+            
+            <label class="col-form-label" for="myemail"> Email* </label>
+            <input [(ngModel)]="associate.email" required name="myemail" #emailid="ngModel" type="email" 
+              class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Email Id" id="myemail">
+        
+            </div>
+            <!-- <br> -->
+            <!-- password field -->
+            <div class="form-group">
+            
+            <label for="password">Password*</label>
+            <input [(ngModel)]="associate.pwd" required name="password" type="password" #pwd="ngModel"
+              class="form-control ng-valid bcolor" placeholder="Password" id="password">
+        
+            </div>
+
+            <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+            <br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+
+              File uploaded: <img width="300px;" [src]="downloadSrc" alt="">
+              <!-- <a [href]="downloadSrc">{{downloadSrc}}</a> -->
+            </div>
+
+            <!-- submit button -->
+            <button type="submit" class="btn btn-success"
+            [disabled]="!regForm.form.valid">
+            Update
+            </button>
+
+        </div>
+    
+      </form>
+      <!-- ........ -->
+
+      
+    </div>
+  </div>
+  </div>
+
+  
+  <!-- ...... -->     
+
+</div>

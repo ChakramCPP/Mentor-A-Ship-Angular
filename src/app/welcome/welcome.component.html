@@ -1,0 +1,181 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+      <a class="navbar-brand" href="#">Mentor-A-Ship</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+
+      <div class="collapse navbar-collapse" id="navbarColor01" >
+        <ul class="navbar-nav ml-auto">
+
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+
+          <li routerLink="/login" class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/register">SignUp</a>
+          </li>
+
+
+        </ul>
+
+    
+
+      </div>
+
+
+</nav>
+<div style="opacity: 90%; margin-top: 100px; margin-left: 400px; margin-right: 400px; "> 
+      <div class="container">
+      <div class="card border-s">
+        <div class="card-header">
+          Welcome to the Mentor-A-Ship!
+        </div>
+        <div class="card-body">
+          
+          <h5 class="card-title">Choose your category:</h5>
+          
+          <!-- ........ -->
+          <form (ngSubmit)="onSubmit()" #regForm="ngForm">
+            <!-- <h1 class="display-5">Hello, Please fill this to Register</h1> -->
+            <div style="margin-left: 150px; margin-top: 30px;">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="change2Associate()" type="button" class="btn btn-secondary">Associate</button>
+                <!-- <button type="button" class="btn btn-secondary">Middle</button> -->
+                <button (click)="change2Mentor()" type="button" class="btn btn-secondary">Mentor</button>
+              </div>
+            </div>
+            <hr class="my-4">
+            
+            <div>
+                <p class="lead">Enter your details to Register!</p>
+                
+                <!-- Name Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label bcolor" for="uname"> Name* </label>
+                  <input [(ngModel)]="uname" required name="uname" #Name="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Name" id="uname">
+              
+                </div>
+                <div [hidden]="Name.valid || Name.pristine" class="alert alert-danger">
+                  Name is required!
+                </div>
+                <!-- Email Field -->
+                <div class="form-group">
+                
+                <label class="col-form-label" for="email"> Email* </label>
+                <input [(ngModel)]="email" required name="email" #emailid="ngModel" type="email" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Email Id" id="email">
+            
+                </div>
+                <div [hidden]="emailid.valid || emailid.pristine" class="alert alert-danger">
+                  Email Id is required!
+                </div>
+                <ng-container *ngIf="category.value=='mentor'">
+                <!-- Organization Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label" for="org"> Organization </label>
+                  <input [(ngModel)]="org" required name="org" #Org="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Organization" id="org">
+              
+                </div>
+                <!-- Role Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label" for="role"> Role </label>
+                  <input [(ngModel)]="role" required name="role" #Role="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Role" id="role">
+              
+                </div>
+    
+                <!-- Area of Interest Field -->
+                
+                <div class="form-group">
+                
+                  <label class="col-form-label" for="aoi"> Area of Interest </label>
+                  <input [(ngModel)]="aoi" required name="aoi" #Aoi="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Area of Interest" id="aoi">
+              
+                </div>
+              
+                <!-- Expertise Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label" for="expertise"> Expertise </label>
+                  <input [(ngModel)]="expertise" required name="expertise" #Role="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Expertise" id="expertise">
+              
+                </div>
+                </ng-container>
+
+                <!-- Category Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label" for=" category"> Category </label>
+                  <input #category="ngModel" [(ngModel)]="cat" required name="cat"  type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Category" id="category">
+              
+                </div>
+                <!-- <br> -->
+                <!-- password field -->
+                <div class="form-group">
+                
+                <label for="password">Password*</label>
+                <input [(ngModel)]="password" required name="password" type="password" #pwd="ngModel"
+                  class="form-control ng-valid bcolor" placeholder="Password" id="password">
+            
+                </div>
+                <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger">
+                Password is required!
+                </div>
+
+                <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+                <br>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+
+                  File uploaded: <img width="300px;" [src]="downloadSrc" alt="">
+                  <!-- <a [href]="downloadSrc">{{downloadSrc}}</a> -->
+                </div>
+
+                <div> <p> <i style="color: blue;">* required fields</i></p></div> 
+
+                <!-- submit button -->
+                <button type="submit" class="btn btn-success"
+                [disabled]="!regForm.form.valid">
+                Register
+                </button>
+
+            </div>
+        
+          </form>
+          <!-- ........ -->
+
+          
+        </div>
+      </div>
+      </div>
+
+      
+      <!-- ...... -->     
+  
+
+      <div>
+          @
+      </div>
+
+  
+</div>
+

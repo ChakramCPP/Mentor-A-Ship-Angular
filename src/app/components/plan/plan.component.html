@@ -1,0 +1,128 @@
+
+
+
+<div style="opacity: 90%; margin-top: 100px; margin-left: 400px; margin-right: 400px; "> 
+    <div class="container">
+    <div class="card border-s">
+      <div class="card-header">
+       Assign a Task/Assessment/Course/Project to associates
+      </div>
+      <div class="card-body">
+        
+        <!-- ........ -->
+        <form (ngSubmit)="onTaskSubmit()" #regForm="ngForm"> 
+            <div>
+                <p class="lead">Edit the details to create a Task!</p>
+                
+                <!-- Name Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label bcolor" for="tname"> Name* </label>
+                  <input [(ngModel)]="task.tname" required name="tname" #Name="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Name of the Task" id="tname">
+              
+                </div>
+                <!-- Email Field -->
+                <div class="form-group">
+                
+                <label class="col-form-label" for="assid"> Associate Id* </label>
+                <input [(ngModel)]="task.associateid" required name="assid" #ass_id="ngModel" type="text" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Associate Id" id="assid">
+            
+                </div>
+                <!-- <br> -->
+                <!-- Task date -->
+                <div class="form-group">
+                
+                    <label class="col-form-label" for="assid"> Date* </label>
+                    <input [(ngModel)]="task.tdate" required name="tdate" #date="ngModel" type="date" 
+                      class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Date" id="tdate">
+                
+                    </div>
+                <!-- Type field -->
+                <div class="form-group">
+                
+                <label for="type">Type*</label>
+                <input [(ngModel)]="task.task_type" required name="type" type="text" #tasktype="ngModel"
+                  class="form-control ng-valid bcolor" placeholder="Password" id="type">
+            
+                </div>
+                <!-- submit button -->
+                <button type="submit" class="btn btn-success"
+                [disabled]="!regForm.form.valid">
+                Create
+                </button>
+    
+            </div>
+        
+          </form>
+        <!-- ........ -->
+  
+        
+      </div>
+    </div>
+    </div>
+</div>
+
+<div style="opacity: 90%; margin-top: 100px; margin-left: 400px; margin-right: 400px; "> 
+    <div class="container">
+    <div class="card border-s">
+      <div class="card-header">
+       Provide Links/Resources here!
+      </div>
+      <div class="card-body">
+        
+        <!-- ........ -->
+        <form (ngSubmit)="onResourceSubmit()" #regForm="ngForm"> 
+            <div>
+                <p class="lead">Edit the details to provide a Resource!</p>
+                
+                <!-- Name Field -->
+                <div class="form-group">
+                
+                  <label class="col-form-label bcolor" for="rname"> Name* </label>
+                  <input [(ngModel)]="resource.rname" required name="rname" #rName="ngModel" type="text" 
+                    class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Name of the Resource" id="rname">
+              
+                </div>
+                <!-- Task id Field -->
+                <div class="form-group">
+                
+                <label class="col-form-label" for="rtid"> Task Id* </label>
+                <input [(ngModel)]="resource.tid" required name="rtid" #rTid="ngModel" type="number" 
+                  class="form-control ng-valid ng-untouched ng-pristine bcolor" placeholder="Task Id" id="rtid">
+            
+                </div>
+                <!-- <br> -->
+                
+                <input type="file" (change)="upload($event)" accept=".pdf" />
+                <br>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+
+                  File uploaded: 
+                  <a [href]="downloadSrc">{{downloadSrc}}</a>
+                </div>
+            
+    
+                <!-- submit button -->
+                <button type="submit" class="btn btn-success"
+                [disabled]="!regForm.form.valid">
+                Create
+                </button>   
+    
+            </div>
+        
+          </form>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,39 @@
+
+<div style="opacity: 90%; margin-top: 100px; margin-left: 150px; margin-right: 150px; "> 
+    <div class="container">
+    <div class="card border-s">
+      <div class="card-header">
+       Assign a Task/Assessment/Course/Project to associates
+      </div>
+      <div class="card-body">
+        
+        <!-- ........ -->
+        <div *ngFor="let associate of associates; let idx=index;">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Associate Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Photograph</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr class="table-warning">
+                    <td>{{associate.ass_id}}</td>
+                    <td>{{associate.aname}}</td>
+                    <td>
+                        <img [src]="associate.image" class="pimage" alt="Photograph">
+                    </td>
+                   </tr> 
+                    <!-- <td>{{task.task_status || 0}}%</td> -->
+                </tbody>
+              </table> 
+        </div>
+        <!-- ........ -->
+  
+        
+      </div>
+    </div>
+    </div>
+</div>

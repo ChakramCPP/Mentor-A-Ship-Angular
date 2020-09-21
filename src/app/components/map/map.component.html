@@ -1,0 +1,33 @@
+<div style="opacity: 90%; margin-top: 100px; margin-left: 150px; margin-right: 150px; "> 
+    <div class="container">
+    <div class="card border-s">
+      <div class="card-header">
+       Assign a Mentor to each associate, limit:5
+      </div>
+      <div class="card-body">
+        <form class="form-inline" (ngSubmit)="mapMentors()" #f="ngForm">
+        <!-- ........ -->
+        <div class="form-group">
+            <label for="mentorSelect"> select Mentor</label>
+            <select [(ngModel)]="selectedMentor" name="mentor" class="form-control" id="mentorSelect">
+              <option  *ngFor="let mentor of mentors">{{mentor.mentor_id}}</option>
+            </select>
+        </div>
+        <div class="form-group" style="margin-left:40px;">
+            <label for="asoociateSelect"> select Associate</label>
+            <select [(ngModel)]="selectedAssociate" name="associate" class="form-control" id="associateSelect">
+              <option *ngFor="let associate of associates">{{associate.ass_id}}</option>
+            </select>
+        </div>
+        <div style="margin-left: 40px;">
+            <button type="submit" class="btn btn-success"
+            [disabled]="!f.form.valid"> Map </button>
+        </div>
+        <!-- ........ -->
+         </form>
+        
+      </div>
+    </div>
+    </div>
+</div>
+
